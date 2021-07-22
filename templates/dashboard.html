@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> 
+<link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+
+
+<html>
+    <head>
+        <title>Details....</title>
+    </head>
+    <body align="center">
+        <h2> Hi {{f_name}}, Thank you for registering. </h2>
+        <p> Please check your details are correct or not in below........</p>
+        <ul>
+            <!-- <li>Your first name : <b>{{f_name}}</b></li><br>
+            <li>Your last name : <b>{{l_name}}</b></li><br>  -->
+             <li>Your E-mail: <b>{{email}} </b></li><br>
+        </ul>
+        <div><h4>Please search for the book with ISBN number only</h4>
+        <form action="{{url_for('dashboard')}}" method="POST">
+            <input type="text" name="isbn" id="isbn" class="form-control input-sm floatlabel" placeholder="ISBN Number">
+            <input type="submit" value="Submit" class="btn btn-info btn-block">
+        </form>
+        </div>
+        {% if fi>0 %}
+       
+        <table align="center" class="table table-inverse" border = "1" width = "500" height = "150">
+            <thead>
+              <tr>
+                <th scope="col">ISBN</th>
+                <th scope="col">NAME</th>
+                <th scope="col">AUTHOR</th>
+                <th scope="col">YEAR</th>
+              </tr>
+            </thead>
+              {% for i in l %}
+              <tr>
+              <td>{{i.isbn}}
+              </td>
+              <td>{{i.name}}
+              </td>
+              <td>{{i.author}}
+              </td>
+              <td>{{i.year}}
+              </td>
+              </tr>
+              {% endfor %}
+          </table>
+          {% elif fi==0 %}
+          <p>Please enter correct ISBN</p>
+          {% endif %}
+
+
+
+
+
+        <p>Click hear to login with another user:  <a href="{{url_for('logout')}}"><b>Logout</b></a></p>
+    
+    </body>
+</html> 
+
+
+
+
+
+<!-- 
+
+
+<html>
+    <head>
+        <title>
+            Sample Code
+        </title>
+    </head>
+    <body>
+        <p>Click hear to login with another user:  <a href="{{url_for('logout')}}">Logout</a></p>
+    </body>
+</html> --> 
